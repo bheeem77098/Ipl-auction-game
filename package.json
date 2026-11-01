@@ -1,0 +1,10 @@
+{
+  "name": "ipl-auction-battle",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Private real-time cricket auction game",
+  "main": "server.js",
+  "scripts": { "start": "node server.js", "dev": "node server.js" },
+  "dependencies": { "express": "^4.21.2", "socket.io": "^4.8.1" },
+  "engines": { "node": ">=18" }
+}

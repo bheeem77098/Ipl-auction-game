@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#090d1a"><title>IPL Auction Battle</title><link rel="stylesheet" href="style.css"></head>
+<body><main class="app">
+<header><div class="brand"><span class="ball">🏏</span><div><b>AUCTION BATTLE</b><small>PRIVATE CRICKET AUCTION</small></div></div><span class="pill">LIVE MULTIPLAYER</span></header>
+<section id="home" class="panel">
+  <div class="hero"><div class="eyebrow">BUILD YOUR DREAM SQUAD</div><h1>THE BIG<br><em>AUCTION.</em></h1><p>Challenge your friends. Bid smart. Build a champion squad.</p></div>
+  <label>Your display name</label><input id="name" maxlength="18" placeholder="Enter your name" value="Host">
+  <button id="create" class="primary">＋ CREATE PRIVATE ROOM</button>
+  <div class="or">OR JOIN YOUR FRIENDS</div>
+  <input id="roomCode" maxlength="6" placeholder="ENTER 6-DIGIT ROOM CODE" class="code">
+  <button id="join" class="secondary">JOIN ROOM</button>
+  <p class="hint">Up to 10 friends · ₹120 Cr purse each · Mobile friendly</p>
+</section>
+<section id="lobby" class="panel hidden">
+  <div class="topline"><div><div class="eyebrow">PRIVATE ROOM</div><h2>THE DRESSING ROOM</h2></div><div class="roomcode" id="code">------</div></div>
+  <p class="muted">Share this code with your friends so they can join.</p><button id="share" class="secondary">↗ SHARE INVITE LINK</button>
+  <div class="sectionhead"><b>CHOOSE YOUR FRANCHISE</b><span id="myTeamLabel">Pick one</span></div><div id="teamGrid" class="team-grid"></div>
+  <div class="sectionhead"><b>PLAYERS</b><span id="count">1 / 10</span></div><div id="roster" class="roster"></div>
+  <button id="start" class="primary hidden">START AUCTION →</button><p id="waiting" class="hint">Waiting for the host to start…</p>
+</section>
+<section id="auction" class="hidden">
+  <div class="auction-layout">
+    <aside class="sidebar">
+      <div class="side-title">AUCTION MENU</div>
+      <button class="side-link active" data-panel="live"><span>⚡</span> Live Auction</button>
+      <button class="side-link" data-panel="upcoming"><span>⏭</span> Upcoming Players <b id="upcomingCount">20</b></button>
+      <button class="side-link" data-panel="mine"><span>🛡</span> My Squad</button>
+      <button class="side-link" data-panel="teams"><span>👥</span> All Squads</button>
+      <button class="side-link" data-panel="budget"><span>💰</span> Budget Overview</button>
+      <div class="side-room">ROOM <b id="sideRoom">------</b></div>
+    </aside>
+    <div class="auction-main">
+      <div class="auctionhead"><div><div class="eyebrow">LIVE AUCTION</div><b id="lotNo">LOT 01</b></div><div class="timer" id="timer">20</div><div class="pursebox"><small>YOUR PURSE</small><b id="myPurse">₹120 Cr</b></div></div>
+      <button id="endAuction" class="danger hidden">■ END AUCTION NOW</button>
+      <div id="livePanel" class="view-panel">
+        <article class="playercard">
+          <div class="playerart" id="currentPlayerArt"><div class="playerinitial" id="initial">VK</div><span class="role" id="role">BATTER</span><span class="country" id="country">INDIA</span></div>
+          <div class="playerinfo"><div class="eyebrow">NOW UP FOR BIDDING</div><h2 id="playerName">Virat Kohli</h2><p id="playerMeta" class="muted">India · Batter</p><div class="stats" id="stats"></div></div>
+        </article>
+        <div class="bidboard"><div><small>CURRENT HIGHEST BID</small><strong id="bid">₹2.00 Cr</strong><p id="leader" class="muted">No bids yet</p></div><div class="bidbuttons"><button data-add="0" id="bidBase">BID BASE</button><button data-add="0.25">+25L</button><button data-add="0.5">+50L</button><button data-add="1">+1Cr</button><button data-add="2">+2Cr</button></div></div>
+        <div class="sectionhead"><b>YOUR SQUAD</b><span id="squadCount">0 players</span></div><div id="mySquad" class="squad"></div>
+        <div class="sectionhead"><b>ROOM PLAYERS</b><span>LIVE</span></div><div id="liveRoster" class="liveRoster"></div>
+        <div class="activity" id="activity"></div>
+      </div>
+      <div id="upcomingPanel" class="view-panel hidden"><div class="panel-heading"><div class="eyebrow">AUCTION QUEUE</div><h2>Upcoming Players</h2><p class="muted">Players waiting for their turn. The list updates after every lot.</p></div><div id="upcomingList" class="player-list"></div></div>
+      <div id="minePanel" class="view-panel hidden"><div class="panel-heading"><div class="eyebrow">YOUR TEAM</div><h2>My Squad</h2><p id="myBudgetLine" class="muted"></p></div><div id="mySquadFull" class="player-list"></div></div>
+      <div id="teamsPanel" class="view-panel hidden"><div class="panel-heading"><div class="eyebrow">ROOM OVERVIEW</div><h2>All Squads</h2><p class="muted">See every player's purchases and remaining purse.</p></div><div id="allSquads"></div></div>
+      <div id="budgetPanel" class="view-panel hidden"><div class="panel-heading"><div class="eyebrow">PURSE TRACKER</div><h2>Budget Overview</h2><p class="muted">Starting purse: ₹120.00 Cr per player.</p></div><div id="budgets"></div></div>
+    </div>
+  </div>
+</section>
+<section id="xi" class="panel hidden">
+  <div class="hero tight"><div class="eyebrow">AUCTION COMPLETE</div><h1>PICK YOUR<br><em>PLAYING XI.</em></h1><p>Tap players in batting order. Max 4 overseas, a wicketkeeper and at least 5 bowling options. When every team has locked in, the season starts automatically.</p></div>
+  <div id="xiTeam" class="xi-team"></div>
+  <div id="xiStatus" class="xi-status"></div>
+  <div class="xi-actions"><button id="autoXI" class="secondary">✨ AUTO-PICK BEST XI</button><button id="clearXI" class="secondary">CLEAR</button></div>
+  <div id="xiList" class="player-list"></div>
+  <button id="lockXI" class="primary">🔒 LOCK PLAYING XI</button>
+  <div class="sectionhead"><b>TEAMS READY</b><span id="readyCount"></span></div>
+  <div id="readyList" class="liveRoster"></div>
+  <button id="startSeason" class="secondary hidden">▶ START SEASON NOW (auto-pick XI for teams not ready)</button>
+  <p id="xiWait" class="hint"></p>
+</section>
+<section id="finished" class="panel hidden">
+  <div class="hero tight"><div class="eyebrow" id="seasonEyebrow">SEASON</div><h1 id="seasonTitle">THE SEASON.<br><em>IS ON.</em></h1></div>
+  <div id="replay" class="replay hidden"><div class="replay-head"><b id="replayLabel">Match 1</b><button id="skipReplay" class="mini">SKIP ⏭</button></div><div class="replay-bar"><span id="replayBar"></span></div><div id="replayFeed" class="match-list"></div></div>
+  <div id="results"></div>
+  <button id="resimulate" class="secondary hidden">🔁 RE-SIMULATE SEASON (same squads &amp; XIs)</button>
+  <button id="backHome" class="secondary">BACK TO HOME</button>
+</section>
+<div id="toast" class="toast"></div><footer>Fan-made private game · Not affiliated with BCCI / IPL</footer>
+</main><script src="/socket.io/socket.io.js"></script><script src="franchises.js"></script><script src="app.js"></script></body></html>
